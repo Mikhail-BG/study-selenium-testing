@@ -1,0 +1,30 @@
+plugins {
+    id 'java'
+    id 'idea'
+}
+
+group 'TrainingSelenium'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+sourceSets {
+    main {
+        compileClasspath = configurations.compile + configurations.compileOnly
+    }
+    test {
+        compileClasspath = compileClasspath + configurations.compileOnly
+    }
+    selenium {
+        compileClasspath = compileClasspath + configurations.compileOnly
+    }
+}
+
+dependencies {
+    implementation 'junit:junit:+'
+    implementation 'org.seleniumhq.selenium:selenium-java:4+'
+}
