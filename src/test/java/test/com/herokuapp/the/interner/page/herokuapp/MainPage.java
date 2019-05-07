@@ -2,7 +2,7 @@ package test.com.herokuapp.the.interner.page.herokuapp;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import test.com.herokuapp.the.interner.constant.HerokuappUrl;
+import test.com.herokuapp.the.interner.constant.url.HerokuappUrl;
 import test.com.herokuapp.the.interner.page.PageObject;
 import test.com.herokuapp.the.interner.util.LocatorProducer;
 
@@ -22,6 +22,10 @@ public class MainPage extends PageObject
     {
         super(webDriver);
         url = HerokuappUrl.MAIN;
+    }
+
+    public void openPage()
+    {
         webDriver.get(url);
     }
 

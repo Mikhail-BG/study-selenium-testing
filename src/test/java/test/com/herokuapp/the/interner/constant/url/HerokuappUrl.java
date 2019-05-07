@@ -1,4 +1,6 @@
-package test.com.herokuapp.the.interner.constant;
+package test.com.herokuapp.the.interner.constant.url;
+
+import test.com.herokuapp.the.interner.constant.PropertyLoader;
 
 public class HerokuappUrl
 {

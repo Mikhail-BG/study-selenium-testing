@@ -13,18 +13,23 @@ repositories {
 }
 
 sourceSets {
-    main {
-        compileClasspath = configurations.compile + configurations.compileOnly
-    }
     test {
-        compileClasspath = compileClasspath + configurations.compileOnly
-    }
-    selenium {
-        compileClasspath = compileClasspath + configurations.compileOnly
+        java.srcDirs = ['src/test/java']
+        resources.srcDirs = ['src/test/resources']
     }
 }
 
 dependencies {
-    implementation 'junit:junit:+'
-    implementation 'org.seleniumhq.selenium:selenium-java:4+'
+    testCompile 'org.testng:testng:6+'
+    testCompile 'org.seleniumhq.selenium:selenium-java:4+'
+}
+
+configurations {
+    integrationCompile.extendsFrom testCompile
+    integrationRuntime.extendsFrom testRuntime
+}
+
+test {
+    useTestNG()
+    testLogging.showStandardStreams = true
 }
