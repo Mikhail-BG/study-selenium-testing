@@ -5,6 +5,8 @@ import org.openqa.selenium.support.PageFactory;
 
 public class PageObject
 {
+    protected String url;
+
     protected WebDriver webDriver;
 
     public PageObject(WebDriver webDriver)
@@ -21,5 +23,10 @@ public class PageObject
     public String getTitle()
     {
         return webDriver.getTitle();
+    }
+
+    public void goBack()
+    {
+        webDriver.navigate().back();
     }
 }
