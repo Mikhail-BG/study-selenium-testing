@@ -16,6 +16,7 @@ public class DriverProducer
     public static WebDriver initFirefoxWebDriver()
     {
         System.setProperty("webdriver.gecko.driver", SetupConstant.GECKODRIVER);
+
         WebDriver webDriver = new FirefoxDriver();
         webDriver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
         webDriver.manage().window().maximize();
@@ -31,7 +32,7 @@ public class DriverProducer
         capabilities.setBrowserName("firefox");
         //capabilities.setVersion("43");
 
-        WebDriver webDriver = null;
+        WebDriver webDriver;
         try
         {
             webDriver = new RemoteWebDriver(new URL("http://192.168.56.1:4444/wd/hub"), capabilities);

@@ -24,8 +24,10 @@ sourceSets {
 }
 
 dependencies {
-    testCompile 'org.testng:testng:6+'
+    implementation 'org.testng:testng:6+'
     implementation 'org.seleniumhq.selenium:selenium-java:4+'
+
+    implementation 'org.apache.commons:commons-collections4:+'
 }
 
 configurations {

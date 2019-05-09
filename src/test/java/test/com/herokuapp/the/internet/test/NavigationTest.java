@@ -1,6 +1,5 @@
 package test.com.herokuapp.the.internet.test;
 
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import test.com.herokuapp.the.internet.page.herokuapp.MainPage;
 
@@ -10,6 +9,7 @@ public class NavigationTest extends TestBase
 
     public NavigationTest()
     {
+        super("NavigationTest");
         this.page = new MainPage(webDriver);
     }
 
@@ -20,7 +20,7 @@ public class NavigationTest extends TestBase
         String expectedText = "A/B Test Control";
         page.openPage();
         String actualText = page.gotoAbTest().getH3Text();
-        Assert.assertEquals(actualText, expectedText);
+        softAssertWrapper.softAssertEquals(actualText, expectedText);
     }
 
     @Test(priority = 2)
@@ -30,6 +30,6 @@ public class NavigationTest extends TestBase
         String expectedText = "Add/Remove Elements";
         page.openPage();
         String actualText = page.gotoAddRemoveElements().getH3Text();
-        Assert.assertEquals(actualText, expectedText);
+        softAssertWrapper.softAssertEquals(actualText, expectedText);
     }
 }
