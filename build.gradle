@@ -13,6 +13,10 @@ repositories {
 }
 
 sourceSets {
+    main {
+        java.srcDirs = ['src/main/java']
+        resources.srcDirs = ['src/main/resources']
+    }
     test {
         java.srcDirs = ['src/test/java']
         resources.srcDirs = ['src/test/resources']
@@ -21,7 +25,7 @@ sourceSets {
 
 dependencies {
     testCompile 'org.testng:testng:6+'
-    testCompile 'org.seleniumhq.selenium:selenium-java:4+'
+    implementation 'org.seleniumhq.selenium:selenium-java:4+'
 }
 
 configurations {

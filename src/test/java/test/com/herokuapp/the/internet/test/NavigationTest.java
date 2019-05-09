@@ -1,8 +1,8 @@
-package test.com.herokuapp.the.interner.test;
+package test.com.herokuapp.the.internet.test;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import test.com.herokuapp.the.interner.page.herokuapp.MainPage;
+import test.com.herokuapp.the.internet.page.herokuapp.MainPage;
 
 public class NavigationTest extends TestBase
 {
@@ -17,17 +17,19 @@ public class NavigationTest extends TestBase
     public void gotoAbTest()
     {
         LOGGER.info("AbTest");
+        String expectedText = "A/B Test Control";
         page.openPage();
-        page.gotoAbTest();
-        Assert.assertEquals("The Internet", page.getTitle());
+        String actualText = page.gotoAbTest().getH3Text();
+        Assert.assertEquals(actualText, expectedText);
     }
 
     @Test(priority = 2)
     public void gotoAddRemoveElementsTest()
     {
         LOGGER.info("AddRemoveElementsTest");
+        String expectedText = "Add/Remove Elements";
         page.openPage();
-        page.gotoAddRemoveElements();
-        Assert.assertEquals("The Internet", page.getTitle());
+        String actualText = page.gotoAddRemoveElements().getH3Text();
+        Assert.assertEquals(actualText, expectedText);
     }
 }

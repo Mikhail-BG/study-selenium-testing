@@ -1,4 +1,4 @@
-package test.com.herokuapp.the.interner.constant;
+package test.com.herokuapp.the.internet.constant;
 
 public class SetupConstant
 {

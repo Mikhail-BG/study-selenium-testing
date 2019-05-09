@@ -1,4 +1,4 @@
-package test.com.herokuapp.the.interner.util;
+package test.com.herokuapp.the.internet.util;
 
 import org.openqa.selenium.By;
 

@@ -1,12 +1,13 @@
-package test.com.herokuapp.the.interner.page;
+package test.com.herokuapp.the.internet.page;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
-public class PageObject
+public abstract class PageObject
 {
-    protected String url;
+    protected static String FILENAME;
 
+    protected String url;
     protected WebDriver webDriver;
 
     public PageObject(WebDriver webDriver)
@@ -14,6 +15,8 @@ public class PageObject
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this);
     }
+
+    public abstract void openPage();
 
     public WebDriver getWebDriver()
     {

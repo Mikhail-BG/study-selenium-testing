@@ -1,9 +1,9 @@
-package test.com.herokuapp.the.interner.test;
+package test.com.herokuapp.the.internet.test;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
-import test.com.herokuapp.the.interner.config.DriverProducer;
+import test.com.herokuapp.the.internet.config.DriverProducer;
 
 import java.util.logging.Logger;
 
@@ -14,7 +14,8 @@ public class TestBase
 
     TestBase()
     {
-        this.webDriver = DriverProducer.initWebDriver();
+        this.webDriver = DriverProducer.initFirefoxWebDriver();
+        //this.webDriver = DriverProducer.initGridWebdriver();
     }
 
     @BeforeTest
