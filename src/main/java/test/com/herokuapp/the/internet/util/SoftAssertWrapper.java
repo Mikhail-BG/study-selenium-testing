@@ -1,13 +1,16 @@
 package test.com.herokuapp.the.internet.util;
 
-import org.apache.commons.collections4.CollectionUtils;
-import org.testng.asserts.SoftAssert;
-
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.apache.commons.collections4.CollectionUtils;
+import org.testng.asserts.SoftAssert;
+
+/**
+ * ... Wrapper to collect and maintain asserts
+ */
 public class SoftAssertWrapper
 {
     private static final Logger LOGGER = Logger.getLogger(SoftAssertWrapper.class.getName());
@@ -15,12 +18,18 @@ public class SoftAssertWrapper
     private SoftAssert softAssert;
     private List<AssertionError> errors = new LinkedList<>();
 
+    /**
+     * This is default constructor.
+     */
     public SoftAssertWrapper()
     {
         LOGGER.setLevel(Level.FINE);
     }
 
-    public void softAssertEquals(String actual, String expected)
+    /**
+     * This implementation logs and do assertion.
+     */
+    public void softAssertEquals(Object actual, Object expected)
     {
         softAssert = new SoftAssert();
         LOGGER.info(TimePrinter.getDateTimeMessage() + " ASSERT :" + actual + " EQUALS TO: " + expected);
@@ -28,17 +37,23 @@ public class SoftAssertWrapper
         collectError();
     }
 
+    /**
+     * This implementation check if assertion errors occurred.
+     *
+     * @return false if no errors occurred.
+     */
     public boolean isEmpty()
     {
+        boolean result = false;
         if (CollectionUtils.isEmpty(errors))
         {
-            return true;
+            result = true;
         }
         else
         {
             errors.forEach(Throwable::getMessage);
-            return false;
         }
+        return result;
     }
 
     private void collectError()
@@ -47,9 +62,9 @@ public class SoftAssertWrapper
         {
             softAssert.assertAll();
         }
-        catch (AssertionError e)
+        catch (AssertionError ex)
         {
-            errors.add(e);
+            errors.add(ex);
         }
     }
 }
