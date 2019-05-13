@@ -11,15 +11,15 @@ public class AddRemoveElementTest extends TestBase
     public AddRemoveElementTest()
     {
         super("AddRemoveElementTest");
-        this.page = new AddRemoveElementsPage(webDriver);
     }
 
     @Test(priority = 1)
     public void addOneElement()
     {
         LOGGER.info("Add one removable element");
+        page = new AddRemoveElementsPage(getWebDriver());
         page.openPage();
-        page.clickAddButton();;
+        page.clickAddButton();
         softAssertWrapper.softAssertEquals(1, page.countRemoveElement());
     }
 
@@ -27,6 +27,7 @@ public class AddRemoveElementTest extends TestBase
     public void removeOneElement()
     {
         LOGGER.info("Add and remove one element");
+        page = new AddRemoveElementsPage(getWebDriver());
         page.openPage();
         page.clickAddButton();
         softAssertWrapper.softAssertEquals(1, page.countRemoveElement());

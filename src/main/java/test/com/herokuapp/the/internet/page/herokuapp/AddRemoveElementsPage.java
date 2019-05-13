@@ -8,13 +8,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import test.com.herokuapp.the.internet.constant.url.HerokuappUrl;
-import test.com.herokuapp.the.internet.page.PageObject;
+import test.com.herokuapp.the.internet.page.AbstractPageObject;
 import test.com.herokuapp.the.internet.util.LocatorProducer;
 
 /**
  * ... API for Add/Remove Elements page.
  */
-public class AddRemoveElementsPage extends PageObject
+public class AddRemoveElementsPage extends AbstractPageObject
 {
     private static By h3Text;
     private static By buttonAddElement;
@@ -22,10 +22,10 @@ public class AddRemoveElementsPage extends PageObject
 
     static
     {
-        FILENAME = "/herokuapp/herokuapp_addremovelements_locators.properties";
-        h3Text = LocatorProducer.get(FILENAME, "h3text");
-        buttonAddElement = LocatorProducer.get(FILENAME, "buttonadd");
-        buttonRemoveElement = LocatorProducer.get(FILENAME, "buttonremove");
+        setFilename("/herokuapp/herokuapp_addremovelements_locators.properties");
+        h3Text = LocatorProducer.get(getFilename(), "h3text");
+        buttonAddElement = LocatorProducer.get(getFilename(), "buttonadd");
+        buttonRemoveElement = LocatorProducer.get(getFilename(), "buttonremove");
     }
 
     /**
@@ -34,13 +34,13 @@ public class AddRemoveElementsPage extends PageObject
     public AddRemoveElementsPage(WebDriver webDriver)
     {
         super(webDriver);
-        url = HerokuappUrl.ADDREMOVEELEMENTS;
+        setUrl(HerokuappUrl.ADDREMOVEELEMENTS);
     }
 
     @Override
     public void openPage()
     {
-        webDriver.get(url);
+        getWebDriver().get(getUrl());
     }
 
     /**
@@ -50,7 +50,7 @@ public class AddRemoveElementsPage extends PageObject
      */
     public String getH3Text()
     {
-        return webDriver.findElement(h3Text).getText();
+        return getWebDriver().findElement(h3Text).getText();
     }
 
     /**
@@ -58,7 +58,7 @@ public class AddRemoveElementsPage extends PageObject
      */
     public void clickAddButton()
     {
-        webDriver.findElement(buttonAddElement).click();
+        getWebDriver().findElement(buttonAddElement).click();
     }
 
     /**
@@ -68,7 +68,7 @@ public class AddRemoveElementsPage extends PageObject
      */
     public int countRemoveElement()
     {
-        return webDriver.findElements(buttonRemoveElement).size();
+        return getWebDriver().findElements(buttonRemoveElement).size();
     }
 
     /**
@@ -78,7 +78,7 @@ public class AddRemoveElementsPage extends PageObject
      */
     public void removeOneElement()
     {
-        final List<WebElement> removeButtons = webDriver.findElements(buttonRemoveElement);
+        final List<WebElement> removeButtons = getWebDriver().findElements(buttonRemoveElement);
         if (CollectionUtils.isEmpty(removeButtons))
         {
             throw new RuntimeException("Remove buttons were not created!");

@@ -2,43 +2,59 @@ package test.com.herokuapp.the.internet.page.herokuapp;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+
 import test.com.herokuapp.the.internet.constant.url.HerokuappUrl;
-import test.com.herokuapp.the.internet.page.PageObject;
+import test.com.herokuapp.the.internet.page.AbstractPageObject;
 import test.com.herokuapp.the.internet.util.LocatorProducer;
 
-public class MainPage extends PageObject
+/**
+ * API fot the main page.
+ */
+public class MainPage extends AbstractPageObject
 {
     private static By abTestLink;
     private static By addRemoveElementsLink;
 
     static
     {
-        FILENAME = "/herokuapp/herokuapp_locators.properties";
-        abTestLink = LocatorProducer.get(FILENAME, "abtest_link");
-        addRemoveElementsLink = LocatorProducer.get(FILENAME, "addremoveelements_link");
+        setFilename("/herokuapp/herokuapp_locators.properties");
+        abTestLink = LocatorProducer.get(getFilename(), "abtest_link");
+        addRemoveElementsLink = LocatorProducer.get(getFilename(), "addremoveelements_link");
     }
 
+    /**
+     * Default constructor.
+     */
     public MainPage(WebDriver webDriver)
     {
         super(webDriver);
-        url = HerokuappUrl.MAIN;
+        setUrl(HerokuappUrl.MAIN);
     }
 
     @Override
     public void openPage()
     {
-        webDriver.get(url);
+        getWebDriver().get(getUrl());
     }
 
+    /**
+     * Forward to ABTest page.
+     *
+     * @return ABTest page object.
+     */
     public AbTestPage gotoAbTest()
     {
-        webDriver.findElement(abTestLink).click();
-        return new AbTestPage(webDriver);
+        getWebDriver().findElement(abTestLink).click();
+        return new AbTestPage(getWebDriver());
     }
 
+    /**
+     * Forwards to AddRemoveElement page.
+     * @return AddRemoveElement page object.
+     */
     public AddRemoveElementsPage gotoAddRemoveElements()
     {
-        webDriver.findElement(addRemoveElementsLink).click();
-        return new AddRemoveElementsPage(webDriver);
+        getWebDriver().findElement(addRemoveElementsLink).click();
+        return new AddRemoveElementsPage(getWebDriver());
     }
 }
