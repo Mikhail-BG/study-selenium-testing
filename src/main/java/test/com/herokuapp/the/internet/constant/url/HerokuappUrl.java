@@ -1,21 +1,29 @@
 package test.com.herokuapp.the.internet.constant.url;
 
-import test.com.herokuapp.the.internet.constant.PropertyLoader;
-
 import java.util.Properties;
 
-public class HerokuappUrl
+import test.com.herokuapp.the.internet.constant.PropertyLoader;
+
+/**
+ * URL loader from property file.
+ */
+public final class HerokuappUrl
 {
+    public static final String MAIN;
+    public static final String ABTEST;
+    public static final String ADDREMOVEELEMENTS;
+
     private static final String FILENAME = "/herokuapp/herokuapp_url.properties";
-    public static String MAIN;
-    public static String ABTEST;
-    public static String ADDREMOVEELEMENTS;
 
     static
     {
-        Properties properties = PropertyLoader.getProperties(FILENAME);
+        final Properties properties = PropertyLoader.getProperties(FILENAME);
         MAIN = properties.getProperty("url_main");
         ABTEST = properties.getProperty("url_abtest");
         ADDREMOVEELEMENTS = properties.getProperty("url_addremoveelements");
+    }
+
+    private HerokuappUrl()
+    {
     }
 }

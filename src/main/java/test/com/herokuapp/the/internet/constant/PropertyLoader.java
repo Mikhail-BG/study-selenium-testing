@@ -6,7 +6,10 @@ import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class PropertyLoader
+/**
+ * Utils to load property from property file.
+ */
+public final class PropertyLoader
 {
     private static final Logger LOGGER;
 
@@ -15,19 +18,29 @@ public class PropertyLoader
         LOGGER = Logger.getLogger(SetupConstant.class.getName());
     }
 
+    private PropertyLoader()
+    {
+    }
+
+    /**
+     * Loads properties from file.
+     *
+     * @param propertyFileName filename of property file.
+     * @return loaded properties from file.
+     */
     public static Properties getProperties(String propertyFileName)
     {
         LOGGER.setLevel(Level.CONFIG);
 
-        Properties properties = new Properties();
-        InputStream inputStream = SetupConstant.class.getResourceAsStream(propertyFileName);
+        final Properties properties = new Properties();
+        final InputStream inputStream = SetupConstant.class.getResourceAsStream(propertyFileName);
         try
         {
             properties.load(inputStream);
         }
-        catch (IOException e)
+        catch (IOException ex)
         {
-            LOGGER.info(e.getMessage());
+            LOGGER.info(ex.getMessage());
         }
 
         return properties;

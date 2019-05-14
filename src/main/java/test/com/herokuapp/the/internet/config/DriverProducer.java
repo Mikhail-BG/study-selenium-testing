@@ -29,6 +29,7 @@ public final class DriverProducer
     public static WebDriver initFirefoxWebDriver()
     {
         System.setProperty("webdriver.gecko.driver", SetupConstant.GECKODRIVER);
+        System.setProperty("webdriver.firefox.silentOutput", "true");
 
         final WebDriver webDriver = new FirefoxDriver();
         webDriver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);

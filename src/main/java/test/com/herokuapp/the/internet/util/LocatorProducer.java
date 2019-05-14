@@ -1,17 +1,24 @@
 package test.com.herokuapp.the.internet.util;
 
-import org.openqa.selenium.By;
-
-import java.io.*;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class LocatorProducer
-{
-    public static final Logger LOGGER;
-    private static Properties LOCATORS;
+import org.openqa.selenium.By;
 
+/**
+ * Utils for locators loading from property files.
+ */
+public final class LocatorProducer
+{
+    private static final Logger LOGGER;
+    private static final Properties LOCATORS;
+
+    /**
+     * Locator types that can be used.
+     */
     private enum LocatorType
     {
         id, className, name, css, xpath, tag, text, parText
@@ -24,66 +31,86 @@ public class LocatorProducer
         LOCATORS = new Properties();
     }
 
+    private LocatorProducer()
+    {
+    }
+
+    /**
+     * Get locator by its name from property file.
+     * @param fileName source of locators.
+     * @param locatorName locator name in property file.
+     * @return By object for WebDriver.
+     */
     public static By get(String fileName, String locatorName)
     {
         try
         {
-            InputStream inputStream = LocatorProducer.class.getResourceAsStream(fileName);
+            final InputStream inputStream = LocatorProducer.class.getResourceAsStream(fileName);
             LOCATORS.load(inputStream);
         }
-        catch (IOException e)
+        catch (IOException ex)
         {
-            e.printStackTrace();
+            ex.printStackTrace();
         }
-        String propertyValue = LOCATORS.getProperty(locatorName);
+        final String propertyValue = LOCATORS.getProperty(locatorName);
         return getLocator(propertyValue);
     }
 
     private static By getLocator(String locator)
     {
-        String[] locatorItems = locator.split("=", 2);
-        LocatorType locatorType = LocatorType.valueOf(locatorItems[0]);
-        String locatorValue = locatorItems[1];
+        final String[] locatorItems = locator.split("=", 2);
+        final LocatorType locatorType = LocatorType.valueOf(locatorItems[0]);
+        final String locatorValue = locatorItems[1];
+        final By by;
 
         switch (locatorType)
         {
             case id:
             {
-                return By.id(locatorValue);
+                by = By.id(locatorValue);
+                break;
             }
             case className:
             {
-                return By.className(locatorValue);
+                by = By.className(locatorValue);
+                break;
             }
             case name:
             {
-                return By.name(locatorValue);
+                by = By.name(locatorValue);
+                break;
             }
             case css:
             {
-                return By.cssSelector(locatorValue);
+                by = By.cssSelector(locatorValue);
+                break;
             }
             case xpath:
             {
-                return By.xpath(locatorValue);
+                by = By.xpath(locatorValue);
+                break;
             }
             case tag:
             {
-                return By.tagName(locatorValue);
+                by = By.tagName(locatorValue);
+                break;
             }
             case text:
             {
-                return By.linkText(locatorValue);
+                by = By.linkText(locatorValue);
+                break;
             }
             case parText:
             {
-                return By.partialLinkText(locatorValue);
+                by = By.partialLinkText(locatorValue);
+                break;
             }
             default:
             {
                 throw new IllegalArgumentException("No such argument: " + locatorItems[0]);
             }
         }
+        return by;
     }
 }
 
