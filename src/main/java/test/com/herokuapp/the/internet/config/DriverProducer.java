@@ -70,6 +70,9 @@ public final class DriverProducer
      */
     public static void destroyWebDriver(WebDriver webDriver)
     {
-        webDriver.quit();
+        if (webDriver != null)
+        {
+            webDriver.quit();
+        }
     }
 }

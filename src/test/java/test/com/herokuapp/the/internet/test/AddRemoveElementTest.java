@@ -16,7 +16,7 @@ public class AddRemoveElementTest extends TestBase
     @Test(priority = 1)
     public void addOneElement()
     {
-        LOGGER.info("Add one removable element");
+        logTestMethod("Add one removable element");
         page = new AddRemoveElementsPage(getWebDriver());
         page.openPage();
         page.clickAddButton();
@@ -26,7 +26,7 @@ public class AddRemoveElementTest extends TestBase
     @Test(priority = 2)
     public void removeOneElement()
     {
-        LOGGER.info("Add and remove one element");
+        logTestMethod("Add and remove one element");
         page = new AddRemoveElementsPage(getWebDriver());
         page.openPage();
         page.clickAddButton();

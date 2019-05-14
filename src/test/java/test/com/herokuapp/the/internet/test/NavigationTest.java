@@ -16,7 +16,7 @@ public class NavigationTest extends TestBase
     @Test(priority = 1)
     public void gotoAbTest()
     {
-        LOGGER.info("AbTest");
+        logTestMethod("AB Test");
         page = new MainPage(getWebDriver());
         String expectedText = "A/B Test Control";
         page.openPage();
@@ -27,7 +27,7 @@ public class NavigationTest extends TestBase
     @Test(priority = 2)
     public void gotoAddRemoveElementsTest()
     {
-        LOGGER.info("AddRemoveElementsTest");
+        logTestMethod("Add/Remove Elements Test");
         page = new MainPage(getWebDriver());
         String expectedText = "Add/Remove Elements";
         page.openPage();

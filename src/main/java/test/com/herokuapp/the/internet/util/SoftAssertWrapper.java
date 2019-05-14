@@ -32,7 +32,7 @@ public class SoftAssertWrapper
     public void softAssertEquals(Object actual, Object expected)
     {
         softAssert = new SoftAssert();
-        LOGGER.info(TimePrinter.getDateTimeMessage() + " ASSERT :" + actual + " EQUALS TO: " + expected);
+        LOGGER.info(TimePrinter.getDateTimeMessage() + " ASSERT : \"" + actual + "\" EQUALS TO: \"" + expected + "\"");
         softAssert.assertEquals(actual, expected);
         collectError();
     }
@@ -51,7 +51,7 @@ public class SoftAssertWrapper
         }
         else
         {
-            errors.forEach(Throwable::getMessage);
+            errors.forEach(error -> LOGGER.log(Level.WARNING, error.getMessage()));
         }
         return result;
     }
