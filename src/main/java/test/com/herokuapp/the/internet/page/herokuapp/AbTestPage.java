@@ -1,25 +1,19 @@
 package test.com.herokuapp.the.internet.page.herokuapp;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 import test.com.herokuapp.the.internet.constant.url.HerokuappUrl;
 import test.com.herokuapp.the.internet.page.AbstractPageObject;
-import test.com.herokuapp.the.internet.util.LocatorProducer;
 
 /**
  * Api for ABTest page.
  */
 public class AbTestPage extends AbstractPageObject
 {
-    private static By h3Text;
-
-    static
-    {
-        setFilename("/herokuapp/herokuapp_abtest_locators.properties");
-
-        h3Text = LocatorProducer.get(getFilename(), "h3text");
-    }
+    @FindBy(xpath = "//h3[1]")
+    private WebElement h3Text;
 
     /**
      * Default constructor.
@@ -42,6 +36,6 @@ public class AbTestPage extends AbstractPageObject
      */
     public String findH3Text()
     {
-        return getWebDriver().findElement(h3Text).getText();
+        return h3Text.getText();
     }
 }

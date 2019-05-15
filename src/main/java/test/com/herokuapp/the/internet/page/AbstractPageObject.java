@@ -8,8 +8,6 @@ import org.openqa.selenium.support.PageFactory;
  */
 public abstract class AbstractPageObject
 {
-    private static String filename;
-
     private String url;
     private WebDriver webDriver;
 
@@ -35,16 +33,6 @@ public abstract class AbstractPageObject
     public void setWebDriver(WebDriver webDriver)
     {
         this.webDriver = webDriver;
-    }
-
-    public static String getFilename()
-    {
-        return filename;
-    }
-
-    public static void setFilename(String filename)
-    {
-        AbstractPageObject.filename = filename;
     }
 
     public String getUrl()

@@ -1,32 +1,27 @@
 package test.com.herokuapp.the.internet.page.herokuapp;
 
 import java.util.List;
+import java.util.Random;
 
 import org.apache.commons.collections4.CollectionUtils;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 import test.com.herokuapp.the.internet.constant.url.HerokuappUrl;
 import test.com.herokuapp.the.internet.page.AbstractPageObject;
-import test.com.herokuapp.the.internet.util.LocatorProducer;
 
 /**
  * ... API for Add/Remove Elements page.
  */
 public class AddRemoveElementsPage extends AbstractPageObject
 {
-    private static By h3Text;
-    private static By buttonAddElement;
-    private static By buttonRemoveElement;
-
-    static
-    {
-        setFilename("/herokuapp/herokuapp_addremovelements_locators.properties");
-        h3Text = LocatorProducer.get(getFilename(), "h3text");
-        buttonAddElement = LocatorProducer.get(getFilename(), "buttonadd");
-        buttonRemoveElement = LocatorProducer.get(getFilename(), "buttonremove");
-    }
+    @FindBy(xpath = "//h3[1]")
+    private WebElement h3Text;
+    @FindBy(xpath = "//button[contains(text(),'Add Element')]")
+    private WebElement buttonAddElement;
+    @FindBy(xpath = "//button[@class='added-manually' and @onclick='deleteElement()']")
+    private List<WebElement> buttonRemoveElements;
 
     /**
      * Default constructor.
@@ -48,9 +43,9 @@ public class AddRemoveElementsPage extends AbstractPageObject
      *
      * @return h3 text value
      */
-    public String getH3Text()
+    public String findH3Text()
     {
-        return getWebDriver().findElement(h3Text).getText();
+        return h3Text.getText();
     }
 
     /**
@@ -58,7 +53,22 @@ public class AddRemoveElementsPage extends AbstractPageObject
      */
     public void clickAddButton()
     {
-        getWebDriver().findElement(buttonAddElement).click();
+        buttonAddElement.click();
+    }
+
+    /**
+     * Click on AddElement several times.
+     *
+     * @param times how many times to click.
+     */
+    public void clickAddButton(int times)
+    {
+        int counter = times;
+        while (counter > 0)
+        {
+            clickAddButton();
+            counter = --counter;
+        }
     }
 
     /**
@@ -68,24 +78,44 @@ public class AddRemoveElementsPage extends AbstractPageObject
      */
     public int countRemoveElement()
     {
-        return getWebDriver().findElements(buttonRemoveElement).size();
+        return buttonRemoveElements.size();
     }
 
     /**
-     * Find remove buttons and click on first remove button.
+     * Click on random Remove button.
      *
      * @throws RuntimeException in a case of remove buttons absence.
      */
-    public void removeOneElement()
+    public void clickDeleteButton()
     {
-        final List<WebElement> removeButtons = getWebDriver().findElements(buttonRemoveElement);
-        if (CollectionUtils.isEmpty(removeButtons))
+        if (CollectionUtils.isEmpty(buttonRemoveElements))
         {
             throw new RuntimeException("Remove buttons were not created!");
         }
         else
         {
-            removeButtons.get(0).click();
+            final Random random = new Random();
+            int buttonNumber = random.nextInt(buttonRemoveElements.size()) - 1;
+            if (buttonNumber < 0)
+            {
+                buttonNumber = 0;
+            }
+            buttonRemoveElements.get(buttonNumber).click();
+        }
+    }
+
+    /**
+     * Click on number of Delete buttons.
+     *
+     * @times amount of Delete buttons.
+     */
+    public void clickDeleteButton(int times)
+    {
+        int counter = times;
+        while (counter > 0)
+        {
+            clickDeleteButton();
+            counter = --counter;
         }
     }
 }

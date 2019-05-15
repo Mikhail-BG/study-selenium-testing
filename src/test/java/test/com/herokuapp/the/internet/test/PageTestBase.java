@@ -2,30 +2,31 @@ package test.com.herokuapp.the.internet.test;
 
 import java.util.logging.Logger;
 
-import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
 
 import test.com.herokuapp.the.internet.config.DriverProducer;
+import test.com.herokuapp.the.internet.page.AbstractPageObject;
 import test.com.herokuapp.the.internet.util.SoftAssertWrapper;
 import test.com.herokuapp.the.internet.util.TimePrinter;
 
-public class TestBase
+public abstract class PageTestBase<T extends AbstractPageObject>
 {
-    static final Logger LOGGER = Logger.getLogger(TestBase.class.getName());
-    private WebDriver webDriver;
+    private static final Logger LOGGER = Logger.getLogger(PageTestBase.class.getName());
     SoftAssertWrapper softAssertWrapper;
     private String testName;
     private String testMethod;
 
-    TestBase(String testName)
+    PageTestBase(String testName)
     {
         //this.webDriver = DriverProducer.initGridWebdriver();
         this.softAssertWrapper = new SoftAssertWrapper();
         this.testName = testName;
     }
+
+    public abstract T getPage();
 
     public String getTestMethod()
     {
@@ -43,17 +44,7 @@ public class TestBase
         LOGGER.info(TimePrinter.getDateTimeMessage() + "Started single test method: " + getTestMethod());
     }
 
-    public WebDriver getWebDriver()
-    {
-        return webDriver;
-    }
-
-    public void setWebDriver(WebDriver webDriver)
-    {
-        this.webDriver = webDriver;
-    }
-
-    @BeforeTest
+    @BeforeClass
     public void setUpTest()
     {
         LOGGER.info(TimePrinter.getDateTimeMessage() + " " + testName + " STARTED");
@@ -62,13 +53,12 @@ public class TestBase
     @BeforeMethod
     public void setUp()
     {
-        setWebDriver(DriverProducer.initFirefoxWebDriver());
     }
 
     @AfterMethod
     public void cleanUp()
     {
-        DriverProducer.destroyWebDriver(getWebDriver());
+        DriverProducer.destroyWebDriver(getPage().getWebDriver());
         if (softAssertWrapper.isEmpty())
         {
             LOGGER.info(TimePrinter.getDateTimeMessage() + " " + testMethod + " PASSED");

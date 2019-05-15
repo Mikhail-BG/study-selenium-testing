@@ -1,26 +1,21 @@
 package test.com.herokuapp.the.internet.page.herokuapp;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 import test.com.herokuapp.the.internet.constant.url.HerokuappUrl;
 import test.com.herokuapp.the.internet.page.AbstractPageObject;
-import test.com.herokuapp.the.internet.util.LocatorProducer;
 
 /**
  * API fot the main page.
  */
 public class MainPage extends AbstractPageObject
 {
-    private static By abTestLink;
-    private static By addRemoveElementsLink;
-
-    static
-    {
-        setFilename("/herokuapp/herokuapp_locators.properties");
-        abTestLink = LocatorProducer.get(getFilename(), "abtest_link");
-        addRemoveElementsLink = LocatorProducer.get(getFilename(), "addremoveelements_link");
-    }
+    @FindBy(xpath = "//a[.='A/B Testing']")
+    private static WebElement abTestLink;
+    @FindBy(xpath = "//a[.='Add/Remove Elements']")
+    private static WebElement addRemoveElementsLink;
 
     /**
      * Default constructor.
@@ -44,7 +39,7 @@ public class MainPage extends AbstractPageObject
      */
     public AbTestPage gotoAbTest()
     {
-        getWebDriver().findElement(abTestLink).click();
+        abTestLink.click();
         return new AbTestPage(getWebDriver());
     }
 
@@ -54,7 +49,7 @@ public class MainPage extends AbstractPageObject
      */
     public AddRemoveElementsPage gotoAddRemoveElements()
     {
-        getWebDriver().findElement(addRemoveElementsLink).click();
+        addRemoveElementsLink.click();
         return new AddRemoveElementsPage(getWebDriver());
     }
 }
