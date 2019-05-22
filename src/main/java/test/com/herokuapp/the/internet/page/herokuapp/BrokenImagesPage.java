@@ -15,6 +15,7 @@ import test.com.herokuapp.the.internet.page.AbstractPageObject;
  */
 public class BrokenImagesPage extends AbstractPageObject
 {
+    private final String brokenImageAttributeName = "naturalWidth";
     @FindBy(xpath = "//div[@class='example']/img")
     private List<WebElement> images;
 
@@ -56,7 +57,7 @@ public class BrokenImagesPage extends AbstractPageObject
     private List<WebElement> findBrokenImages()
     {
         return images.stream()
-                .filter(image -> image.getAttribute("naturalWidth").equals("0"))
+                .filter(image -> image.getAttribute(brokenImageAttributeName).equals("0"))
                 .collect(Collectors.toList());
     }
 }
