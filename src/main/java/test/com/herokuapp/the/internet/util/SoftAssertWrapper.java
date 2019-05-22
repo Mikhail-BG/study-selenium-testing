@@ -33,7 +33,15 @@ public class SoftAssertWrapper
     {
         softAssert = new SoftAssert();
         LOGGER.info(TimePrinter.getDateTimeMessage() + " ASSERT : \"" + actual + "\" EQUALS TO: \"" + expected + "\"");
-        softAssert.assertEquals(actual, expected);
+        if (actual.getClass() != expected.getClass())
+        {
+            throw new RuntimeException("ACTUAL and EXPECTED are instances of different classes: ACTUAL: '"
+                    + actual.getClass().getSimpleName() + "' EXPECTED: '" + expected.getClass().getSimpleName() + "'");
+        }
+        else
+        {
+            softAssert.assertEquals(actual, expected);
+        }
         collectError();
     }
 
