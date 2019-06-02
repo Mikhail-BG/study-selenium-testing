@@ -3,7 +3,7 @@ package test.com.herokuapp.the.internet.test;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import test.com.herokuapp.the.internet.config.DriverProducer;
+import test.com.herokuapp.the.internet.config.LocalWebDriverManager;
 import test.com.herokuapp.the.internet.page.herokuapp.AddRemoveElementsPage;
 
 public class AddRemoveElementPageTest extends PageTestBase<AddRemoveElementsPage>
@@ -24,11 +24,11 @@ public class AddRemoveElementPageTest extends PageTestBase<AddRemoveElementsPage
     @BeforeMethod
     public void initPage()
     {
-        page = new AddRemoveElementsPage(DriverProducer.initFirefoxWebDriver());
+        page = new AddRemoveElementsPage(LocalWebDriverManager.getFirefoxWebDriver());
         page.openPage();
     }
 
-    @Test(priority = 1)
+    @Test
     public void addOneElement()
     {
         logTestMethod("Add one removable element");
@@ -36,16 +36,16 @@ public class AddRemoveElementPageTest extends PageTestBase<AddRemoveElementsPage
         softAssertWrapper.softAssertEquals(1, page.countRemoveElement());
     }
 
-    @Test(priority = 2)
+    @Test
     public void addFiveElements()
     {
         logTestMethod("Add five elements");
-        int timestoClickButton = 5;
-        page.clickAddButton(timestoClickButton);
-        softAssertWrapper.softAssertEquals(timestoClickButton, page.countRemoveElement());
+        int timesToClickButton = 5;
+        page.clickAddButton(timesToClickButton);
+        softAssertWrapper.softAssertEquals(timesToClickButton, page.countRemoveElement());
     }
 
-    @Test(priority = 3)
+    @Test
     public void removeOneElement()
     {
         logTestMethod("Add and remove one element");
@@ -55,7 +55,7 @@ public class AddRemoveElementPageTest extends PageTestBase<AddRemoveElementsPage
         softAssertWrapper.softAssertEquals(0, page.countRemoveElement());
     }
 
-    @Test(priority = 4)
+    @Test
     public void removeFiveElements()
     {
         logTestMethod("Add and remove five elements");

@@ -3,7 +3,7 @@ package test.com.herokuapp.the.internet.test;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import test.com.herokuapp.the.internet.config.DriverProducer;
+import test.com.herokuapp.the.internet.config.LocalWebDriverManager;
 import test.com.herokuapp.the.internet.page.herokuapp.MainPage;
 
 public class NavigationPageTest extends PageTestBase<MainPage>
@@ -24,18 +24,18 @@ public class NavigationPageTest extends PageTestBase<MainPage>
     @BeforeMethod
     public void initPage()
     {
-        page = new MainPage(DriverProducer.initFirefoxWebDriver());
+        page = new MainPage(LocalWebDriverManager.getFirefoxWebDriver());
         page.openPage();
     }
 
-    @Test(priority = 1)
+    @Test
     public void gotoAbTest()
     {
         logTestMethod("AB Test");
         softAssertWrapper.softAssertEquals("A/B Test Control", page.gotoAbTest().findH3Text());
     }
 
-    @Test(priority = 2)
+    @Test
     public void gotoAddRemoveElementsTest()
     {
         logTestMethod("Add/Remove Elements Test");

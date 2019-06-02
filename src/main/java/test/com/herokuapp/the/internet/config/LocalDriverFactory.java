@@ -13,24 +13,23 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import test.com.herokuapp.the.internet.constant.SetupConstant;
 
 /**
- * WebDriver configuration and initializer.
+ * WebDriver factory: initialises WebDriver pre-configured instances.
  */
-public final class DriverProducer
+public final class LocalDriverFactory
 {
-    private DriverProducer()
+    private LocalDriverFactory()
     {
     }
 
     /**
-     * FireFox Browser initializer.
+     * FireFox browser initializer.
      *
-     * @return FireFox browser
+     * @return configured FireFox browser.
      */
-    public static WebDriver initFirefoxWebDriver()
+    public static WebDriver createFireFoxWebDriver()
     {
         System.setProperty("webdriver.gecko.driver", SetupConstant.GECKODRIVER);
         System.setProperty("webdriver.firefox.silentOutput", "true");
-
         final WebDriver webDriver = new FirefoxDriver();
         webDriver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
         webDriver.manage().window().maximize();
@@ -51,29 +50,18 @@ public final class DriverProducer
         capabilities.setBrowserName("firefox");
         //capabilities.setVersion("43");
 
-        WebDriver webDriver;
+        WebDriver remoteWebDriver;
         try
         {
-            webDriver = new RemoteWebDriver(new URL("http://192.168.56.1:4444/wd/hub"), capabilities);
-            webDriver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
-            webDriver.manage().window().maximize();
+            remoteWebDriver = new RemoteWebDriver(new URL("http://192.168.56.1:4444/wd/hub"), capabilities);
+            remoteWebDriver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+            remoteWebDriver.manage().window().maximize();
         }
         catch (MalformedURLException ex)
         {
-            webDriver = null;
+            remoteWebDriver = null;
             ex.printStackTrace();
         }
-        return webDriver;
-    }
-
-    /**
-     * Browser destroyer.
-     */
-    public static void destroyWebDriver(WebDriver webDriver)
-    {
-        if (webDriver != null)
-        {
-            webDriver.quit();
-        }
+        return remoteWebDriver;
     }
 }

@@ -3,7 +3,7 @@ package test.com.herokuapp.the.internet.test;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import test.com.herokuapp.the.internet.config.DriverProducer;
+import test.com.herokuapp.the.internet.config.LocalWebDriverManager;
 import test.com.herokuapp.the.internet.page.herokuapp.BrokenImagesPage;
 
 public class BrokenImagesPageTest extends PageTestBase<BrokenImagesPage>
@@ -24,18 +24,18 @@ public class BrokenImagesPageTest extends PageTestBase<BrokenImagesPage>
     @BeforeMethod
     public void initPage()
     {
-        page = new BrokenImagesPage(DriverProducer.initFirefoxWebDriver());
+        page = new BrokenImagesPage(LocalWebDriverManager.getFirefoxWebDriver());
         page.openPage();
     }
 
-    @Test(priority = 1)
+    @Test
     public void verifyAllImagesNumber()
     {
         logTestMethod("Count all images");
         softAssertWrapper.softAssertEquals(page.countAllImages(), 3);
     }
 
-    @Test(priority = 2)
+    @Test
     public void verifyBrokenImagesNumber()
     {
         logTestMethod("Count broken images");

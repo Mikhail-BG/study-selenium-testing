@@ -7,7 +7,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 
-import test.com.herokuapp.the.internet.config.DriverProducer;
+import test.com.herokuapp.the.internet.config.LocalWebDriverManager;
 import test.com.herokuapp.the.internet.page.AbstractPageObject;
 import test.com.herokuapp.the.internet.util.SoftAssertWrapper;
 import test.com.herokuapp.the.internet.util.TimePrinter;
@@ -21,7 +21,6 @@ public abstract class PageTestBase<T extends AbstractPageObject>
 
     PageTestBase(String testName)
     {
-        //this.webDriver = DriverProducer.initGridWebdriver();
         this.softAssertWrapper = new SoftAssertWrapper();
         this.testName = testName;
     }
@@ -58,7 +57,7 @@ public abstract class PageTestBase<T extends AbstractPageObject>
     @AfterMethod
     public void cleanUp()
     {
-        DriverProducer.destroyWebDriver(getPage().getWebDriver());
+        LocalWebDriverManager.destroyWebDriver(getPage().getWebDriver());
         if (softAssertWrapper.isEmpty())
         {
             LOGGER.info(TimePrinter.getDateTimeMessage() + " " + testMethod + " PASSED");

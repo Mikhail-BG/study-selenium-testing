@@ -1,0 +1,17 @@
+<suite name="Test-class Suite" verbose="1" parallel="tests" thread-count="4" preserve-order="false">
+    <test name="NavigationPageTest">
+        <classes>
+            <class name="test.com.herokuapp.the.internet.test.NavigationPageTest"/>
+        </classes>
+    </test>
+    <test name="AddRemoveElementPageTest">
+        <classes>
+            <class name="test.com.herokuapp.the.internet.test.AddRemoveElementPageTest"/>
+        </classes>
+    </test>
+    <test name="BrokenImagesPageTest">
+        <classes>
+            <class name="test.com.herokuapp.the.internet.test.BrokenImagesPageTest"/>
+        </classes>
+    </test>
+</suite>
