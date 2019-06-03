@@ -1,4 +1,4 @@
-package test.com.herokuapp.the.internet.config;
+package test.com.herokuapp.the.internet.config.webdriver;
 
 import org.openqa.selenium.WebDriver;
 

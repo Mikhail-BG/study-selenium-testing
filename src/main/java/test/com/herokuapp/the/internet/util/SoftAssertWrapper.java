@@ -2,19 +2,17 @@ package test.com.herokuapp.the.internet.util;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.testng.asserts.SoftAssert;
+
+import test.com.herokuapp.the.internet.config.logger.LocaleLog;
 
 /**
  * ... Wrapper to collect and maintain asserts
  */
 public class SoftAssertWrapper
 {
-    private static final Logger LOGGER = Logger.getLogger(SoftAssertWrapper.class.getName());
-
     private SoftAssert softAssert;
     private List<AssertionError> errors = new LinkedList<>();
 
@@ -23,7 +21,6 @@ public class SoftAssertWrapper
      */
     public SoftAssertWrapper()
     {
-        LOGGER.setLevel(Level.FINE);
     }
 
     /**
@@ -32,7 +29,7 @@ public class SoftAssertWrapper
     public void softAssertEquals(Object actual, Object expected)
     {
         softAssert = new SoftAssert();
-        LOGGER.info(TimePrinter.getDateTimeMessage() + " ASSERT : \"" + actual + "\" EQUALS TO: \"" + expected + "\"");
+        LocaleLog.info("ASSERT : \"" + actual + "\" EQUALS TO: \"" + expected + "\"");
         if (actual.getClass() != expected.getClass())
         {
             throw new RuntimeException("ACTUAL and EXPECTED are instances of different classes: ACTUAL: '"
@@ -59,7 +56,7 @@ public class SoftAssertWrapper
         }
         else
         {
-            errors.forEach(error -> LOGGER.log(Level.WARNING, error.getMessage()));
+            errors.forEach(error -> LocaleLog.error(error.getMessage()));
         }
         return result;
     }

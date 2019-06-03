@@ -3,8 +3,6 @@ package test.com.herokuapp.the.internet.util;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import org.openqa.selenium.By;
 
@@ -13,7 +11,6 @@ import org.openqa.selenium.By;
  */
 public final class LocatorProducer
 {
-    private static final Logger LOGGER;
     private static final Properties LOCATORS;
 
     /**
@@ -26,8 +23,6 @@ public final class LocatorProducer
 
     static
     {
-        LOGGER = Logger.getLogger(LocatorProducer.class.getName());
-        LOGGER.setLevel(Level.CONFIG);
         LOCATORS = new Properties();
     }
 

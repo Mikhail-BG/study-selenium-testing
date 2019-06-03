@@ -3,7 +3,7 @@ package test.com.herokuapp.the.internet.test;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import test.com.herokuapp.the.internet.config.LocalWebDriverManager;
+import test.com.herokuapp.the.internet.config.webdriver.LocalWebDriverManager;
 import test.com.herokuapp.the.internet.page.herokuapp.AddRemoveElementsPage;
 
 public class AddRemoveElementPageTest extends PageTestBase<AddRemoveElementsPage>
