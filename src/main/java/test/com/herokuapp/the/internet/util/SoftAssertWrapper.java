@@ -24,12 +24,13 @@ public class SoftAssertWrapper
     }
 
     /**
-     * This implementation logs and do assertion.
+     * Asserts if two instances are equal.
      */
     public void softAssertEquals(Object actual, Object expected)
     {
         softAssert = new SoftAssert();
-        LocaleLog.info("ASSERT : \"" + actual + "\" EQUALS TO: \"" + expected + "\"");
+        final String logMessage = "ASSERT: " + actual + " EQUALS TO: " + expected;
+        LocaleLog.info(logMessage);
         if (actual.getClass() != expected.getClass())
         {
             throw new RuntimeException("ACTUAL and EXPECTED are instances of different classes: ACTUAL: '"
@@ -39,6 +40,17 @@ public class SoftAssertWrapper
         {
             softAssert.assertEquals(actual, expected);
         }
+        collectError();
+    }
+
+    /**
+     * Asserts if statement is true.
+     */
+    public void softAssertTrue(boolean condition, String message)
+    {
+        softAssert = new SoftAssert();
+        LocaleLog.info("ASSERT that TRUE: " + message);
+        softAssert.assertTrue(condition);
         collectError();
     }
 

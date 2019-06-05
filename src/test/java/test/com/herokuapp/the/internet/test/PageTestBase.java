@@ -42,7 +42,7 @@ public abstract class PageTestBase<T extends AbstractPageObject>
     @BeforeClass
     public void setUpTest()
     {
-        LocaleLog.info(" " + testName + " STARTED");
+        LocaleLog.info("TEST: " + testName + " STARTED");
         this.softAssertWrapper = new SoftAssertWrapper();
     }
 
@@ -57,7 +57,7 @@ public abstract class PageTestBase<T extends AbstractPageObject>
         LocalWebDriverManager.destroyWebDriver(getPage().getWebDriver());
         if (softAssertWrapper.isEmpty())
         {
-            LocaleLog.info(" " + testMethod + " PASSED");
+            LocaleLog.info("Test method: " + testMethod + " PASSED");
         }
         else
         {
@@ -68,6 +68,6 @@ public abstract class PageTestBase<T extends AbstractPageObject>
     @AfterClass
     public void tearDown()
     {
-        LocaleLog.info(" " + testName + " FINISHED");
+        LocaleLog.info("TEST: " + testName + " FINISHED");
     }
 }

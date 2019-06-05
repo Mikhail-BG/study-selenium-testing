@@ -15,6 +15,9 @@ public class AbTestPage extends AbstractPageObject
     @FindBy(xpath = "//h3[1]")
     private WebElement h3Text;
 
+    @FindBy(xpath = "//h3[1]/following-sibling::p[1]")
+    private WebElement pageText;
+
     /**
      * Default constructor.
      */
@@ -32,10 +35,21 @@ public class AbTestPage extends AbstractPageObject
 
     /**
      * Returns text for h3 tag of the page.
+     *
      * @return h3 text.
      */
     public String findH3Text()
     {
         return h3Text.getText();
+    }
+
+    /**
+     * Returns text after h3 tag of the page.
+     *
+     * @return page after Heading text.
+     */
+    public String findPageText()
+    {
+        return pageText.getText();
     }
 }

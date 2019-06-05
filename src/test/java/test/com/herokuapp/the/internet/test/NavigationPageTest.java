@@ -32,7 +32,9 @@ public class NavigationPageTest extends PageTestBase<MainPage>
     public void gotoAbTest()
     {
         logTestMethod("Navigation to AB Page");
-        softAssertWrapper.softAssertEquals("A/B Test Control", page.gotoAbTest().findH3Text());
+        String expectedText = "Also known as split testing.";
+        softAssertWrapper.softAssertTrue(page.gotoAbTest().findPageText().contains(expectedText),
+                "AB Page contains text: '" + expectedText + "'");
     }
 
     @Test
