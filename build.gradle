@@ -36,6 +36,10 @@ configurations {
     integrationRuntime.extendsFrom testRuntime
 }
 
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.0'
+}
+
 test {
     useTestNG() {
         suites 'src/test/resources/testng.xml'
