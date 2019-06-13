@@ -7,14 +7,21 @@ import java.util.Properties;
  */
 public final class SetupConstant
 {
-    public static final String GECKODRIVER_WIN;
-    public static final String GECKODRIVER_LNX;
+    public static final String GECKODRIVER;
 
     static
     {
-        final Properties properties = PropertyLoader.getProperties("/setup.properties");
-        GECKODRIVER_WIN = properties.getProperty("geckodriverwin");
-        GECKODRIVER_LNX = properties.getProperty("geckodriverlnx");
+        final Properties properties;
+        if (System.getProperty("os.name").contains("Win"))
+        {
+            properties = PropertyLoader.getProperties("/setup/win.properties");
+        }
+        else
+        {
+            properties = PropertyLoader.getProperties("/setup/lnx.properties");
+
+        }
+        GECKODRIVER = properties.getProperty("geckodriver");
     }
 
     private SetupConstant()
