@@ -31,7 +31,7 @@ public final class LocalDriverFactory
         System.setProperty("webdriver.gecko.driver", SetupConstant.GECKODRIVER);
         System.setProperty("webdriver.firefox.silentOutput", "true");
         //disable Marionette logs
-        System.setProperty(FirefoxDriver.SystemProperty.BROWSER_LOGFILE, "/dev/null");
+        //System.setProperty(FirefoxDriver.SystemProperty.BROWSER_LOGFILE, "/dev/null");
 
         final WebDriver webDriver = new FirefoxDriver();
         webDriver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
