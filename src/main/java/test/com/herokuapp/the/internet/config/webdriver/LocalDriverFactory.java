@@ -7,6 +7,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -33,7 +34,11 @@ public final class LocalDriverFactory
         //disable Marionette logs
         System.setProperty(FirefoxDriver.SystemProperty.BROWSER_LOGFILE, "/dev/null");
 
-        final WebDriver webDriver = new FirefoxDriver();
+        //Set Firefox Headless mode as TRUE
+        final FirefoxOptions firefoxOptions = new FirefoxOptions();
+        firefoxOptions.setHeadless(true);
+
+        final WebDriver webDriver = new FirefoxDriver(firefoxOptions);
         webDriver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
         webDriver.manage().window().maximize();
         return webDriver;
