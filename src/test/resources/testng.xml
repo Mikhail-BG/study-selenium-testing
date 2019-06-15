@@ -1,5 +1,5 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="Test-class Suite" verbose="1" preserve-order="false">
+<suite name="Test-class Suite" verbose="1" parallel="tests" thread-count="1" preserve-order="false">
     <test name="NavigationPageTest">
         <classes>
             <class name="test.com.herokuapp.the.internet.test.NavigationPageTest"/>
