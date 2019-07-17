@@ -15,4 +15,9 @@
             <class name="test.com.herokuapp.the.internet.test.BrokenImagesPageTest"/>
         </classes>
     </test>
+    <test name="BasicAuthPageTest">
+        <classes>
+            <class name="test.com.herokuapp.the.internet.test.BasicAuthPageTest"/>
+        </classes>
+    </test>
 </suite>

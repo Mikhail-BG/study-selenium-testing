@@ -1,9 +1,12 @@
 package test.com.herokuapp.the.internet.page.herokuapp;
 
+import java.util.Properties;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import test.com.herokuapp.the.internet.constant.PropertyLoader;
 import test.com.herokuapp.the.internet.constant.url.HerokuappUrl;
 import test.com.herokuapp.the.internet.page.AbstractPageObject;
 
@@ -16,6 +19,8 @@ public class MainPage extends AbstractPageObject
     private static WebElement abTestLink;
     @FindBy(xpath = "//a[.='Add/Remove Elements']")
     private static WebElement addRemoveElementsLink;
+    @FindBy(xpath = "//a[.='Basic Auth']")
+    private static WebElement basicAuthLink;
 
     /**
      * Default constructor.
@@ -45,11 +50,30 @@ public class MainPage extends AbstractPageObject
 
     /**
      * Forwards to AddRemoveElement page.
+     *
      * @return AddRemoveElement page object.
      */
     public AddRemoveElementsPage gotoAddRemoveElements()
     {
         addRemoveElementsLink.click();
         return new AddRemoveElementsPage(getWebDriver());
+    }
+
+    /**
+     * Forwards to BasicAuth page.
+     *
+     * @return BasicAuth page object.
+     */
+    public BasicAuthPage gotoBasicAuthPage()
+    {
+        final Properties properties = PropertyLoader.getProperties("/herokuapp/herokuapp.properties");
+        final String basicAuthUser = properties.getProperty("basicAuthUser");
+        final String basicAuthPassword = properties.getProperty("baicAuthPassword");
+        final String urlSplitter = "//";
+        final String[] basicAuthUrl = basicAuthLink.getAttribute("href").split(urlSplitter);
+        basicAuthUrl[1] = urlSplitter + basicAuthUser + ":" + basicAuthPassword + "@" + basicAuthUrl[1];
+        final String url = basicAuthUrl[0] + basicAuthUrl[1];
+        getWebDriver().get(url);
+        return new BasicAuthPage(getWebDriver());
     }
 }

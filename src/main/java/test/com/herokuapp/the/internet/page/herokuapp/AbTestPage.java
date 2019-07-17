@@ -24,7 +24,7 @@ public class AbTestPage extends AbstractPageObject
     public AbTestPage(WebDriver webDriver)
     {
         super(webDriver);
-        setUrl(HerokuappUrl.ABTEST);
+        setUrl(HerokuappUrl.AB_TEST);
     }
 
     @Override

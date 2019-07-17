@@ -29,7 +29,7 @@ public class AddRemoveElementsPage extends AbstractPageObject
     public AddRemoveElementsPage(WebDriver webDriver)
     {
         super(webDriver);
-        setUrl(HerokuappUrl.ADDREMOVEELEMENTS);
+        setUrl(HerokuappUrl.ADD_REMOVE_ELEMENTS);
     }
 
     @Override

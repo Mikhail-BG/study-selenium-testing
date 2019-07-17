@@ -25,7 +25,7 @@ public class BrokenImagesPage extends AbstractPageObject
     public BrokenImagesPage(WebDriver webDriver)
     {
         super(webDriver);
-        setUrl(HerokuappUrl.BROKENIMAGES);
+        setUrl(HerokuappUrl.BROKEN_IMAGES);
     }
 
     @Override

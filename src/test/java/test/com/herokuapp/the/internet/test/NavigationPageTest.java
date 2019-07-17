@@ -43,4 +43,13 @@ public class NavigationPageTest extends PageTestBase<MainPage>
         logTestMethod("Navigation to Add/Remove Elements Page");
         softAssertWrapper.softAssertEquals("Add/Remove Elements", page.gotoAddRemoveElements().findH3Text());
     }
+
+    @Test
+    public void gotoBasicAuthTest()
+    {
+        logTestMethod("Navigation to Basic Auth Page");
+        softAssertWrapper
+                .softAssertEquals("Congratulations! You must have the proper credentials.",
+                        page.gotoBasicAuthPage().getTextOnPage());
+    }
 }
