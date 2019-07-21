@@ -1,13 +1,18 @@
 package test.com.herokuapp.the.internet.page;
 
+import java.util.Properties;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
+
+import test.com.herokuapp.the.internet.constant.PropertyLoader;
 
 /**
  * Super class for Page objects.
  */
 public abstract class AbstractPageObject
 {
+    private static final String PROPERIES_FILE_NAME = "/herokuapp/herokuapp.properties";
     private String url;
     private WebDriver webDriver;
 
@@ -47,6 +52,7 @@ public abstract class AbstractPageObject
 
     /**
      * Read page title.
+     *
      * @return title of the page.
      */
     public String readTitle()
@@ -60,5 +66,14 @@ public abstract class AbstractPageObject
     public void goBack()
     {
         webDriver.navigate().back();
+    }
+
+    /**
+     * Load properties from the file.
+     * @return properties for the pages
+     */
+    protected Properties getAllProperties()
+    {
+        return PropertyLoader.getProperties(PROPERIES_FILE_NAME);
     }
 }

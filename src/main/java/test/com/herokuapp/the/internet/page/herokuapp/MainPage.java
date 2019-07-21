@@ -1,12 +1,9 @@
 package test.com.herokuapp.the.internet.page.herokuapp;
 
-import java.util.Properties;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import test.com.herokuapp.the.internet.constant.PropertyLoader;
 import test.com.herokuapp.the.internet.constant.url.HerokuappUrl;
 import test.com.herokuapp.the.internet.page.AbstractPageObject;
 
@@ -21,6 +18,8 @@ public class MainPage extends AbstractPageObject
     private static WebElement addRemoveElementsLink;
     @FindBy(xpath = "//a[.='Basic Auth']")
     private static WebElement basicAuthLink;
+    @FindBy(xpath = "//a[.='Challenging DOM']")
+    private static WebElement challengingDom;
 
     /**
      * Default constructor.
@@ -66,14 +65,24 @@ public class MainPage extends AbstractPageObject
      */
     public BasicAuthPage gotoBasicAuthPage()
     {
-        final Properties properties = PropertyLoader.getProperties("/herokuapp/herokuapp.properties");
-        final String basicAuthUser = properties.getProperty("basicAuthUser");
-        final String basicAuthPassword = properties.getProperty("baicAuthPassword");
+        final String basicAuthUser = getAllProperties().getProperty("basicAuthUser");
+        final String basicAuthPassword = getAllProperties().getProperty("basicAuthPassword");
         final String urlSplitter = "//";
         final String[] basicAuthUrl = basicAuthLink.getAttribute("href").split(urlSplitter);
         basicAuthUrl[1] = urlSplitter + basicAuthUser + ":" + basicAuthPassword + "@" + basicAuthUrl[1];
         final String url = basicAuthUrl[0] + basicAuthUrl[1];
         getWebDriver().get(url);
         return new BasicAuthPage(getWebDriver());
+    }
+
+    /**
+     * Forwards to Challenging DOM page.
+     *
+     * @return ChallengingDom page object.
+     */
+    public ChallengingDomPage gotoChallengingDomPage()
+    {
+        challengingDom.click();
+        return new ChallengingDomPage(getWebDriver());
     }
 }

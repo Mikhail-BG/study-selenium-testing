@@ -20,4 +20,9 @@
             <class name="test.com.herokuapp.the.internet.test.BasicAuthPageTest"/>
         </classes>
     </test>
+    <test name="ChallengingDomPageTest">
+        <classes>
+            <class name="test.com.herokuapp.the.internet.test.ChallengingDomPageTest"/>
+        </classes>
+    </test>
 </suite>

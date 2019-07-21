@@ -14,6 +14,7 @@ public final class HerokuappUrl
     public static final String ADD_REMOVE_ELEMENTS;
     public static final String BASIC_AUTH;
     public static final String BROKEN_IMAGES;
+    public static final String CHALLENGING_DOM;
 
     private static final String FILENAME = "/herokuapp/herokuapp_url.properties";
 
@@ -25,6 +26,7 @@ public final class HerokuappUrl
         ADD_REMOVE_ELEMENTS = properties.getProperty("url_addremoveelements");
         BASIC_AUTH = properties.getProperty("url_basicauth");
         BROKEN_IMAGES = properties.getProperty("url_brokenimages");
+        CHALLENGING_DOM = properties.getProperty("url_challengingdom");
     }
 
     private HerokuappUrl()
