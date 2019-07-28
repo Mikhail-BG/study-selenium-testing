@@ -25,4 +25,9 @@
             <class name="test.com.herokuapp.the.internet.test.ChallengingDomPageTest"/>
         </classes>
     </test>
+    <test name="CheckboxesPageTest">
+        <classes>
+            <class name="test.com.herokuapp.the.internet.test.CheckboxesPageTest"/>
+        </classes>
+    </test>
 </suite>

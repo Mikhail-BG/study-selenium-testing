@@ -20,6 +20,8 @@ public class MainPage extends AbstractPageObject
     private static WebElement basicAuthLink;
     @FindBy(xpath = "//a[.='Challenging DOM']")
     private static WebElement challengingDom;
+    @FindBy(xpath = "//a[.='Checkboxes']")
+    private static WebElement checkboxes;
 
     /**
      * Default constructor.
@@ -84,5 +86,16 @@ public class MainPage extends AbstractPageObject
     {
         challengingDom.click();
         return new ChallengingDomPage(getWebDriver());
+    }
+
+    /**
+     * Forwards to Challenging DOM page.
+     *
+     * @return Checkboxes page object.
+     */
+    public CheckboxesPage gotCheckboxesPage()
+    {
+        checkboxes.click();
+        return new CheckboxesPage(getWebDriver());
     }
 }

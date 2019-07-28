@@ -59,4 +59,11 @@ public class NavigationPageTest extends PageTestBase<MainPage>
         logTestMethod("Navigation to Challenging DOM Page");
         softAssertWrapper.softAssertEquals(page.gotoChallengingDomPage().findH3Text(), "Challenging DOM");
     }
+
+    @Test
+    public void gotoCheckboxesTest()
+    {
+        logTestMethod("Navigation to Checkboxes Page");
+        softAssertWrapper.softAssertEquals(page.gotCheckboxesPage().findH3Text(), "Checkboxes");
+    }
 }
