@@ -36,4 +36,16 @@ public final class LocalWebDriverManager
         }
         webDrivers.get();
     }
+
+    /**
+     * GRID Browser initializer.
+     *
+     * @return GRID Firefox browser
+     */
+    public static WebDriver getGridWebDriver()
+    {
+        final WebDriver webDriver = LocalDriverFactory.initGridWebDriver();
+        webDrivers.set(webDriver);
+        return webDriver;
+    }
 }

@@ -8,6 +8,7 @@ import java.util.Properties;
 public final class SetupConstant
 {
     public static final String GECKODRIVER;
+    public static final String GRID_NODE_URL;
 
     static
     {
@@ -22,6 +23,7 @@ public final class SetupConstant
 
         }
         GECKODRIVER = properties.getProperty("geckodriver");
+        GRID_NODE_URL = properties.getProperty("gridnodeurl");
     }
 
     private SetupConstant()

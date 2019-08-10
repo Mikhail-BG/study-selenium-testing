@@ -18,6 +18,11 @@ import test.com.herokuapp.the.internet.constant.SetupConstant;
  */
 public final class LocalDriverFactory
 {
+    static
+    {
+        System.setProperty("webdriver.gecko.driver", SetupConstant.GECKODRIVER);
+    }
+
     private LocalDriverFactory()
     {
     }
@@ -27,9 +32,8 @@ public final class LocalDriverFactory
      *
      * @return configured FireFox browser.
      */
-    public static WebDriver createFireFoxWebDriver()
+    static WebDriver createFireFoxWebDriver()
     {
-        System.setProperty("webdriver.gecko.driver", SetupConstant.GECKODRIVER);
         System.setProperty("webdriver.firefox.silentOutput", "true");
         //disable Marionette logs
         System.setProperty(FirefoxDriver.SystemProperty.BROWSER_LOGFILE, "/dev/null");
@@ -49,19 +53,17 @@ public final class LocalDriverFactory
      *
      * @return Grid browser.
      */
-    public static WebDriver initGridWebdriver()
+    static WebDriver initGridWebDriver()
     {
-        //System.setProperty("webdriver.gecko.driver", SetupConstant.GECKODRIVER);
-
         final DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setPlatform(Platform.WIN10);
+        capabilities.setPlatform(Platform.ANY);
         capabilities.setBrowserName("firefox");
-        //capabilities.setVersion("43");
+        capabilities.setVersion("60");
 
         WebDriver remoteWebDriver;
         try
         {
-            remoteWebDriver = new RemoteWebDriver(new URL("http://192.168.56.1:4444/wd/hub"), capabilities);
+            remoteWebDriver = new RemoteWebDriver(new URL(SetupConstant.GRID_NODE_URL), capabilities);
             remoteWebDriver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
             remoteWebDriver.manage().window().maximize();
         }
