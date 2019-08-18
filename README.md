@@ -35,6 +35,13 @@ win.properties
 gridnodeurl=http://[YOUR IP]:5556/wd/hub
 ```
 
+## Deployment
+
+Built With
+
+* [geckodriver](https://github.com/mozilla/geckodriver/releases) - Latest Geckodriver
+* [selenium grid](https://docs.seleniumhq.org/download/) - Selenium Server
+
 ## Running the tests
 
 Test run configured under _src/test/resources/testng.xml_
