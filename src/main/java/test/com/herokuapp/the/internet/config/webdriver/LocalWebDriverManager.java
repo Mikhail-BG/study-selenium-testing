@@ -34,7 +34,7 @@ public final class LocalWebDriverManager
         {
             webDriver.quit();
         }
-        webDrivers.get();
+        webDrivers.remove();
     }
 
     /**
