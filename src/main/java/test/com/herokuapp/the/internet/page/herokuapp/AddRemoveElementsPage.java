@@ -107,7 +107,7 @@ public class AddRemoveElementsPage extends AbstractPageObject
     /**
      * Click on number of Delete buttons.
      *
-     * @times amount of Delete buttons.
+     * @param times amount of Delete buttons.
      */
     public void clickDeleteButton(int times)
     {
