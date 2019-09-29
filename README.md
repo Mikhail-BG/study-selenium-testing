@@ -25,15 +25,24 @@ current version: selenium-server-standalone-3.141.59.jar
 ```
 
 * To run with Selenium GRID requires to set up Node host parameter **gridnodeurl**
-in _/resources/setup/lnx.properties_ and _/resources/setup/win.properties_
+in _/resources/environment/localsetup/lnx.properties_ and _/resources/environment/localsetup/win.properties_
 
 ```
 lnx.properties 
-gridnodeurl=http://[YOUR IP]:5556/wd/hub
+gridnodeurl=http://[HOST_IP]:5556/wd/hub
 
 win.properties
-gridnodeurl=http://[YOUR IP]:5556/wd/hub
+gridnodeurl=http://[HOST_IP]:5556/wd/hub
 ```
+
+* To run on Selenoid set environment variable "Environment" = "selenoid". 
+Use _/resources/environment/selenoid.properties_ to set Selenoid hub.
+
+````
+selenoid.properties
+HubUrl=[HOST_IP]]/wd/hub
+enableVNC=true
+````
 
 ## Deployment
 
