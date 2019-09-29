@@ -3,7 +3,7 @@ package test.com.herokuapp.the.internet.test;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import test.com.herokuapp.the.internet.config.webdriver.LocalWebDriverManager;
+import test.com.herokuapp.the.internet.config.webdriver.WebDriverManager;
 import test.com.herokuapp.the.internet.page.herokuapp.MainPage;
 
 public class NavigationPageTest extends PageTestBase<MainPage>
@@ -24,7 +24,7 @@ public class NavigationPageTest extends PageTestBase<MainPage>
     @BeforeMethod
     public void initPage()
     {
-        page = new MainPage(LocalWebDriverManager.getFirefoxWebDriver());
+        page = new MainPage(WebDriverManager.initWebDriver());
         page.openPage();
     }
 

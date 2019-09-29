@@ -3,7 +3,7 @@ package test.com.herokuapp.the.internet.test;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import test.com.herokuapp.the.internet.config.webdriver.LocalWebDriverManager;
+import test.com.herokuapp.the.internet.config.webdriver.WebDriverManager;
 import test.com.herokuapp.the.internet.page.herokuapp.BasicAuthPage;
 
 public class BasicAuthPageTest extends PageTestBase<BasicAuthPage>
@@ -24,7 +24,7 @@ public class BasicAuthPageTest extends PageTestBase<BasicAuthPage>
     @BeforeMethod
     public void initPage()
     {
-        page = new BasicAuthPage(LocalWebDriverManager.getFirefoxWebDriver());
+        page = new BasicAuthPage(WebDriverManager.initWebDriver());
         page.openPage();
     }
 

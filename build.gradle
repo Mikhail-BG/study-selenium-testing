@@ -29,6 +29,7 @@ dependencies {
     implementation 'log4j:log4j:+'
 
     implementation 'org.apache.commons:commons-collections4:+'
+    implementation 'org.apache.commons:commons-lang3:+'
 }
 
 configurations {
@@ -44,4 +45,5 @@ test {
     useTestNG() {
         suites 'src/test/resources/testng.xml'
     }
+    environment 'Environment', 'selenoid'
 }

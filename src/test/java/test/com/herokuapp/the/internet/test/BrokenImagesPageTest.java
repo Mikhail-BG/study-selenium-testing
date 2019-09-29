@@ -3,7 +3,7 @@ package test.com.herokuapp.the.internet.test;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import test.com.herokuapp.the.internet.config.webdriver.LocalWebDriverManager;
+import test.com.herokuapp.the.internet.config.webdriver.WebDriverManager;
 import test.com.herokuapp.the.internet.page.herokuapp.BrokenImagesPage;
 
 public class BrokenImagesPageTest extends PageTestBase<BrokenImagesPage>
@@ -24,7 +24,7 @@ public class BrokenImagesPageTest extends PageTestBase<BrokenImagesPage>
     @BeforeMethod
     public void initPage()
     {
-        page = new BrokenImagesPage(LocalWebDriverManager.getFirefoxWebDriver());
+        page = new BrokenImagesPage(WebDriverManager.initWebDriver());
         page.openPage();
     }
 

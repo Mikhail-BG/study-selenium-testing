@@ -3,7 +3,7 @@ package test.com.herokuapp.the.internet.test;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import test.com.herokuapp.the.internet.config.webdriver.LocalWebDriverManager;
+import test.com.herokuapp.the.internet.config.webdriver.WebDriverManager;
 import test.com.herokuapp.the.internet.page.herokuapp.AddRemoveElementsPage;
 
 public class AddRemoveElementPageTest extends PageTestBase<AddRemoveElementsPage>
@@ -24,7 +24,7 @@ public class AddRemoveElementPageTest extends PageTestBase<AddRemoveElementsPage
     @BeforeMethod
     public void initPage()
     {
-        page = new AddRemoveElementsPage(LocalWebDriverManager.getFirefoxWebDriver());
+        page = new AddRemoveElementsPage(WebDriverManager.initWebDriver());
         page.openPage();
     }
 

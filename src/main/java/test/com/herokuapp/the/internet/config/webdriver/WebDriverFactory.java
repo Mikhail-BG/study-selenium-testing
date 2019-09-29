@@ -1,6 +1,7 @@
 package test.com.herokuapp.the.internet.config.webdriver;
 
 import java.net.MalformedURLException;
+import java.net.URI;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
@@ -11,19 +12,15 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
-import test.com.herokuapp.the.internet.constant.SetupConstant;
+import test.com.herokuapp.the.internet.constant.LocalProperties;
+import test.com.herokuapp.the.internet.constant.SelenoidProperties;
 
 /**
  * WebDriver factory: initialises WebDriver pre-configured instances.
  */
-public final class LocalDriverFactory
+public final class WebDriverFactory
 {
-    static
-    {
-        System.setProperty("webdriver.gecko.driver", SetupConstant.GECKODRIVER);
-    }
-
-    private LocalDriverFactory()
+    private WebDriverFactory()
     {
     }
 
@@ -34,6 +31,8 @@ public final class LocalDriverFactory
      */
     static WebDriver createFireFoxWebDriver()
     {
+        initCommonLocalAndGridVariables();
+
         System.setProperty("webdriver.firefox.silentOutput", "true");
         //disable Marionette logs
         System.setProperty(FirefoxDriver.SystemProperty.BROWSER_LOGFILE, "/dev/null");
@@ -55,6 +54,8 @@ public final class LocalDriverFactory
      */
     static WebDriver initGridWebDriver()
     {
+        initCommonLocalAndGridVariables();
+
         final DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setPlatform(Platform.ANY);
         capabilities.setBrowserName("firefox");
@@ -63,7 +64,7 @@ public final class LocalDriverFactory
         WebDriver remoteWebDriver;
         try
         {
-            remoteWebDriver = new RemoteWebDriver(new URL(SetupConstant.GRID_NODE_URL), capabilities);
+            remoteWebDriver = new RemoteWebDriver(new URL(LocalProperties.GRID_NODE_URL), capabilities);
             remoteWebDriver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
             remoteWebDriver.manage().window().maximize();
         }
@@ -73,5 +74,32 @@ public final class LocalDriverFactory
             ex.printStackTrace();
         }
         return remoteWebDriver;
+    }
+
+    static WebDriver initSelenoidWebDriver()
+    {
+        final DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+        desiredCapabilities.setBrowserName("chrome");
+        desiredCapabilities.setVersion("77");
+        desiredCapabilities.setCapability("enableVNC", SelenoidProperties.ENABLE_VNC);
+
+        try
+        {
+            final RemoteWebDriver webDriver = new RemoteWebDriver(
+                    URI.create(SelenoidProperties.HUB_URL).toURL(),
+                    desiredCapabilities
+            );
+            webDriver.manage().window().maximize();
+            return webDriver;
+        }
+        catch (MalformedURLException ex)
+        {
+            throw new RuntimeException(ex);
+        }
+    }
+
+    private static void initCommonLocalAndGridVariables()
+    {
+        System.setProperty("webdriver.gecko.driver", LocalProperties.GECKODRIVER);
     }
 }

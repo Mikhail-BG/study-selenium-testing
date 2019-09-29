@@ -3,7 +3,7 @@ package test.com.herokuapp.the.internet.test;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import test.com.herokuapp.the.internet.config.webdriver.LocalWebDriverManager;
+import test.com.herokuapp.the.internet.config.webdriver.WebDriverManager;
 import test.com.herokuapp.the.internet.page.herokuapp.ChallengingDomPage;
 
 public class ChallengingDomPageTest extends PageTestBase<ChallengingDomPage>
@@ -24,7 +24,7 @@ public class ChallengingDomPageTest extends PageTestBase<ChallengingDomPage>
     @BeforeMethod
     public void initPage()
     {
-        page = new ChallengingDomPage(LocalWebDriverManager.getFirefoxWebDriver());
+        page = new ChallengingDomPage(WebDriverManager.initWebDriver());
         page.openPage();
     }
 

@@ -6,7 +6,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 
 import test.com.herokuapp.the.internet.config.logger.LocaleLog;
-import test.com.herokuapp.the.internet.config.webdriver.LocalWebDriverManager;
+import test.com.herokuapp.the.internet.config.webdriver.WebDriverManager;
 import test.com.herokuapp.the.internet.page.AbstractPageObject;
 import test.com.herokuapp.the.internet.util.SoftAssertWrapper;
 
@@ -54,7 +54,7 @@ public abstract class PageTestBase<T extends AbstractPageObject>
     @AfterMethod
     public void cleanUp()
     {
-        LocalWebDriverManager.destroyWebDriver(getPage().getWebDriver());
+        WebDriverManager.destroyWebDriver(getPage().getWebDriver());
         if (softAssertWrapper.isEmpty())
         {
             LocaleLog.info("Test method: " + testMethod + " PASSED");

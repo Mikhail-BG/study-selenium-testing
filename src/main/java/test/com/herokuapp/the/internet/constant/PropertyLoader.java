@@ -24,7 +24,7 @@ public final class PropertyLoader
     public static Properties getProperties(String propertyFileName)
     {
         final Properties properties = new Properties();
-        final InputStream inputStream = SetupConstant.class.getResourceAsStream(propertyFileName);
+        final InputStream inputStream = EnvironmentConstant.class.getResourceAsStream(propertyFileName);
         try
         {
             properties.load(inputStream);
